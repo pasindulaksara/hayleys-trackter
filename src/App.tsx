@@ -1,85 +1,84 @@
-import './App.css'  
-
-// Updated with generic Agricultural names (No Kubota)
-const tractorCards = [
-  {
-    id: 1,
-    title: "Hayleys H-Series 4WD",
-    description: "Maximum power for tough Sri Lankan terrain.",
-    image: "https://images.unsplash.com/photo-1625246333195-f819634b8681?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Agri-Tech Harvester",
-    description: "High efficiency harvesting for large scale paddy fields.",
-    image: "https://images.unsplash.com/photo-1595245869403-0c46b539c321?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Eco Field Master",
-    description: "Modern sustainable farming with low fuel consumption.",
-    image: "https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=800&auto=format&fit=crop"
-  }
-];
+import  "./App.css"
+   
 
 export default function App() {
   return (
-    <main 
-      className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat font-sans"
-      style={{ backgroundImage: "url('/bg.png')" }}
-    >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
-
-      {/* --- Main Layout Container --- */}
-      <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-8">
-
-        {/* --- HEADER (Logo) --- */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-10">
-          <div className="bg-white/90 p-3 rounded-lg shadow-md inline-block backdrop-blur-sm">
+    // Main Container: Locked to screen height, no scrolling
+    <div className="relative w-full h-screen overflow-hidden font-sans bg-gray-100">
+      
+      {/* --- 1. FULL BACKGROUND IMAGE --- */}
+      {/* Covers the whole screen initially, but we cover the bottom part with white later */}
+      <div 
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+        style={{ backgroundImage: "url('/bg.jpg')" }}
+      >
+        {/* --- LOGO --- */}
+        {/* Floating in the sky area */}
+        <div className="absolute top-10 left-1/2 transform -translate-x-1/2">
+          <div className="bg-white px-10 py-4 rounded-xl shadow-lg">
             <img 
-              src="/logo.png" 
+              src="/logo.jpg" 
               alt="Hayleys Agriculture" 
-              className="h-12 w-auto object-contain" 
+              className="h-14 md:h-16 w-auto object-contain" 
             />
           </div>
         </div>
+      </div>
 
-        {/* --- CONTENT (Cards) --- */}
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-10 mt-10">
-          
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {tractorCards.map((item) => (
-              <div 
-                key={item.id} 
-                className="group relative overflow-hidden rounded-2xl bg-[#9d2e87] hover:bg-[#b03496] transition-all duration-300 shadow-2xl border border-white/20"
-              >
-                {/* Image Section */}
-                <div className="h-56 w-full overflow-hidden bg-gray-300 relative">
-                    <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-500 text-xs">Loading...</span>
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 block"
-                  />
-                </div>
+      {/* --- 2. WHITE FOOTER SECTION --- */}
+      {/* This sits at the bottom 30% of the screen */}
+      <div className="absolute bottom-0 left-0 w-full h-[30%] bg-white z-0 flex items-end pb-6">
+        {/* Footer Text */}
+        <div className="w-full max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[#2f4f2f] text-[10px] md:text-xs font-bold tracking-wide">
+          <p className="text-center md:text-left">
+            Hayleys Agriculture Holding Limited. &nbsp; No. 25, Foster Lane, Colombo 10, Sri Lanka
+          </p>
+          <p className="text-center md:text-right mt-1 md:mt-0">
+            info@agro.hayleys.com &nbsp;&nbsp;&nbsp; Copyright © 2026
+          </p>
+        </div>
+      </div>
 
-                {/* Content Section */}
-                <div className="p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-white/90 mb-5 leading-relaxed">{item.description}</p>
-                  
-                  <button className="w-full py-3 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-bold backdrop-blur-sm transition-colors border border-white/30 tracking-wide">
-                    VIEW DETAILS
-                  </button>
-                </div>
-              </div>
-            ))}
+      {/* --- 3. OVERLAPPING CARDS LAYER --- */}
+      {/* Absolute positioning to float exactly over the split line (70% / 30%) */}
+      {/* We center this layer vertically around the 70% mark */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none translate-y-16">
+        
+        {/* Cards Container - Max width constrained to keep cards SMALL */}
+        <div className="w-full max-w-5xl px-4 pointer-events-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
+            
+            {/* Card 1 */}
+            <div className="group relative w-full aspect-square bg-white rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-white transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
+              <img 
+                src="/card1.jpg" 
+                alt="Tech Clinic" 
+                className="w-full h-full "
+              />
+            </div>
+
+            {/* Card 2 */}
+            <div className="group relative w-full aspect-square bg-white rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-white transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
+              <img 
+                src="/card2.jpg" 
+                alt="Kubota Tractor" 
+                className="w-full h-full "
+              />
+            </div>
+
+            {/* Card 3 */}
+            <div className="group relative w-full aspect-square bg-white rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-white transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
+              <img 
+                src="/card3.jpg" 
+                alt="Kubota Spare Parts" 
+                className="w-full h-full "
+              />
+            </div>
+
           </div>
         </div>
-
       </div>
-    </main>
+
+    </div>
   );
 }

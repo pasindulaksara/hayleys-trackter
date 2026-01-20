@@ -1,7 +1,5 @@
 
-import './App.css'
-
-import React from 'react';
+import './App.css' 
 
 // Updated with reliable image links
 const tractorCards = [

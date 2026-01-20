@@ -1,5 +1,4 @@
-import './App.css' 
-import React from 'react';
+import './App.css'  
 
 // Updated with generic Agricultural names (No Kubota)
 const tractorCards = [
